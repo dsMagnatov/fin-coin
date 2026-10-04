@@ -8,6 +8,7 @@ import { startNewsletter } from './newsletter.js';
 import { startTravellingCoin } from './travelling-coin.js';
 import { closestToCenter } from './travel-route.js';
 import { setupNavigation } from './navigation.js';
+import { finishPreloader } from './preloader.js';
 import { COIN_SCALE, COIN_RADIUS, COIN_BOUNDS_RADIUS, COIN_DIAMETER_PX, WORLD_UNIT_PX } from './coin-size.js';
 
 const STAGE_WIDTH = 1920;
@@ -80,6 +81,7 @@ traveller = startTravellingCoin(heroCoins);
 resizeStory = startStory({ externalFirstCoin: true, onCoinActivity: active => traveller.setStoryActivity(active) });
 resizeNewsletter = startNewsletter({ coin: traveller.scratchCoin, canInteract: traveller.canScratch });
 traveller.connectNewsletter(resizeNewsletter);
+finishPreloader(fitStage);
 
 function startScene() {
   renderer.setClearColor(0x000000, 1);

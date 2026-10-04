@@ -1,16 +1,91 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-loading="true" aria-busy="true">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="Build practical money skills, make confident financial decisions, and create a more secure future—one smart step at a time." />
     <title>Money Talks — Learn the Language</title>
+    <!-- Critical styles paint before the application or its 3D bundle arrives. -->
+    <style>
+      @font-face { font-family: 'Instrument Serif'; src: url('/fonts/instrument-serif-latin.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+      @font-face { font-family: 'Manrope'; src: url('/fonts/manrope-latin.woff2') format('woff2'); font-weight: 200 800; font-style: normal; font-display: swap; }
+      html { background: #000; color: #f7f7f5; color-scheme: dark; scrollbar-gutter: stable; }
+      body { margin: 0; background: #000; }
+      html[data-loading="true"] { overflow: hidden; }
+      html[data-loading="true"] body > :not(.preloader):not(script):not(noscript) { visibility: hidden; }
+      .preloader { position: fixed; z-index: 100; inset: 0; display: grid; place-items: center; background: #000; color: #f7f7f5; touch-action: none; opacity: 1; transition: opacity 420ms ease; }
+      .preloader[hidden] { display: none; }
+      .preloader[data-state="leaving"] { opacity: 0; pointer-events: none; }
+      .preloader__content { display: flex; flex-direction: column; align-items: center; padding: 24px; text-align: center; }
+      .preloader__coin { width: 76px; height: 76px; margin-bottom: 28px; animation: preloader-turn 3.2s cubic-bezier(.4,0,.6,1) infinite; }
+      .preloader__brand { margin: 0; font: 400 clamp(42px, 6vw, 66px)/1 'Instrument Serif', Georgia, serif; letter-spacing: -1px; }
+      .preloader__track { position: relative; width: 152px; height: 2px; margin-top: 32px; overflow: hidden; background: #242424; }
+      .preloader__track::after { content: ''; position: absolute; inset: 0; background: #eaff70; transform: translateX(-100%); animation: preloader-sweep 1.8s cubic-bezier(.65,0,.35,1) infinite; }
+      .preloader__message { max-width: 260px; min-height: 18px; margin: 16px 0 0; color: #92928d; font: 400 11px/18px 'Manrope', Arial, sans-serif; letter-spacing: .5px; }
+      .preloader__retry { min-height: 44px; margin-top: 20px; padding: 0 24px; border: 0; border-radius: 4px; background: #eaff70; color: #000; font: 400 18px/1 'Instrument Serif', Georgia, serif; cursor: pointer; }
+      .preloader__retry[hidden] { display: none; }
+      .preloader__retry:focus-visible { outline: 2px solid #fff; outline-offset: 5px; }
+      .preloader[data-state="failed"] .preloader__coin, .preloader[data-state="failed"] .preloader__track::after { animation-play-state: paused; }
+      @keyframes preloader-turn { from { transform: perspective(400px) rotateZ(-12deg) rotateY(0); } to { transform: perspective(400px) rotateZ(-12deg) rotateY(360deg); } }
+      @keyframes preloader-sweep { 0% { transform: translateX(-100%) scaleX(.35); } 50% { transform: translateX(0) scaleX(.55); } 100% { transform: translateX(100%) scaleX(.35); } }
+      @media (prefers-reduced-motion: reduce) { .preloader { transition: none; } .preloader__coin { animation: none; } .preloader__track::after { animation: none; transform: scaleX(.45); transform-origin: left; } }
+    </style>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preload" href="/fonts/instrument-serif-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin />
   </head>
   <body>
+    <div class="preloader" role="status" aria-live="polite" aria-label="Loading Money Talks" data-state="loading">
+      <div class="preloader__content">
+        <svg class="preloader__coin" viewBox="0 0 200 200" aria-hidden="true">
+          <defs>
+            <linearGradient id="preloader-glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#152c37"/><stop offset=".22" stop-color="#80d2f0"/><stop offset=".4" stop-color="#e7e8ff"/><stop offset=".56" stop-color="#7954b9"/><stop offset=".75" stop-color="#10202e"/><stop offset="1" stop-color="#c4eeff"/></linearGradient>
+            <linearGradient id="preloader-rim" x2="1" y2="1"><stop stop-color="#d9f8ff"/><stop offset=".3" stop-color="#5c6ec0"/><stop offset=".55" stop-color="#faf6ff"/><stop offset=".75" stop-color="#b175dd"/><stop offset="1" stop-color="#8fdbec"/></linearGradient>
+          </defs>
+          <path fill="url(#preloader-glass)" fill-rule="evenodd" stroke="url(#preloader-rim)" stroke-width="2" d="M100 8a92 92 0 1 0 0 184a92 92 0 1 0 0-184 M100 49C111 83 117 89 151 100C117 111 111 117 100 151C89 117 83 111 49 100C83 89 89 83 100 49Z"/>
+          <circle cx="100" cy="100" r="95" fill="none" stroke="url(#preloader-rim)" stroke-width="1.5"/>
+        </svg>
+        <p class="preloader__brand">Money Talks.</p>
+        <div class="preloader__track" aria-hidden="true"></div>
+        <p class="preloader__message">Loading</p>
+        <button class="preloader__retry" type="button" hidden>Try again</button>
+      </div>
+    </div>
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const loader = document.querySelector('.preloader');
+        const message = loader.querySelector('.preloader__message');
+        const retry = loader.querySelector('.preloader__retry');
+        const slow = setTimeout(() => {
+          if (root.dataset.loading !== 'true') return;
+          message.textContent = 'Taking a little longer. Still loading.';
+          retry.hidden = false;
+        }, 15000);
+        const showFailure = () => {
+          if (root.dataset.loading !== 'true') return;
+          clearTimeout(slow);
+          loader.dataset.state = 'failed';
+          message.textContent = 'Couldn’t load the site. Please try again.';
+          retry.hidden = false;
+        };
+        const fail = event => {
+          if (event.target !== window && !event.target?.matches?.('script[type="module"], link[rel="stylesheet"]')) return;
+          showFailure();
+        };
+        retry.addEventListener('click', () => location.reload());
+        window.addEventListener('error', fail, true);
+        window.addEventListener('unhandledrejection', fail);
+        document.addEventListener('site:loadfailed', showFailure);
+        document.addEventListener('site:ready', () => {
+          clearTimeout(slow);
+          window.removeEventListener('error', fail, true);
+          window.removeEventListener('unhandledrejection', fail);
+          document.removeEventListener('site:loadfailed', showFailure);
+        }, { once: true });
+      })();
+    </script>
     <div class="brand-mark" aria-label="Money Talks">Money Talks.</div>
     <header class="site-header">
       <button class="navigation-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation"><span></span><span></span></button>
@@ -134,5 +209,6 @@
       <div class="travelling-coin-fallback"></div>
     </div>
     <script type="module" src="/src/main.js"></script>
+    <noscript><style>html[data-loading="true"] { overflow: auto; } html[data-loading="true"] body > :not(.preloader):not(script):not(noscript) { visibility: visible; } .preloader { display: none; }</style></noscript>
   </body>
 </html>

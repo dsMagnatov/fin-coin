@@ -24,6 +24,7 @@
   -webkit-font-smoothing: antialiased;
   --accent: #eaff70;
   --stage-scale: 1;
+  --site-styles-ready: 1;
 }
 
 * { box-sizing: border-box; }

@@ -20,8 +20,32 @@ hero loop recycling and spacing, text reveal and inline coin activation,
 scratch coverage without double-counting repeated strokes, and the reversible
 coin route, docking coordinates, desktop and mobile resizing, and nearest-coin selection.
 
+## Deploy to Vercel
+
+Import this GitHub repository into Vercel and use the repository root as the
+Root Directory. The checked-in `vercel.json` selects Vite, installs the pinned
+pnpm version with the frozen lockfile, runs the production build, and publishes
+`dist/`. `package.json` selects Node.js 24.x. No environment variables or
+Corepack dashboard setting are required for this static site.
+
+The repository contains the site source, tests, build configuration, favicon,
+and locally served fonts with their licenses. Design references, unused 3D
+models, screen recordings, generated builds, and verification screenshots are
+excluded from Git. The coins and studio lighting are generated in code, so
+deployment does not require any of the local reference files.
+
+Vercel setup references: [Vite](https://vercel.com/docs/frameworks/frontend/vite),
+[package managers](https://vercel.com/docs/package-managers), and
+[Node.js versions](https://vercel.com/docs/functions/runtimes/node-js/node-js-versions).
+
 Instrument Serif and Manrope are served locally from `public/fonts/`.
 Their OFL licenses are included in that directory.
+
+The black background and branded preloader are embedded in the initial HTML,
+so they appear before JavaScript or 3D resources finish loading. A small glass
+coin and neon loading line remain visible until fonts, page layout and the first
+3D frames are ready, then fade into the site. Slow or failed loads offer a retry;
+reduced motion keeps the loading mark still.
 
 The composition fills the desktop viewport. Type and controls scale together
 relative to a 1920 × 1080 design canvas; additional height expands the coin area.

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Build practical money skills, make confident financial decisions, and create a more secure future—one smart step at a time." />
+    <title>Money Talks — Learn the Language</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/instrument-serif-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin />
+  </head>
+  <body>
+    <div class="brand-mark" aria-label="Money Talks">Money Talks.</div>
+    <header class="site-header">
+      <button class="navigation-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation"><span></span><span></span></button>
+      <nav id="main-navigation" class="navigation" aria-label="Main navigation">
+        <button class="navigation__item navigation__item--active" type="button" aria-current="page">Home</button>
+        <button class="navigation__item" type="button">About</button>
+        <button class="navigation__item" type="button">Services</button>
+        <button class="navigation__item" type="button">Contact</button>
+      </nav>
+    </header>
+    <main class="viewport" aria-label="Money Talks">
+      <section class="screen screen--home" aria-label="Welcome to Money Talks">
+        <div class="stage">
+          <div class="coin-scene" role="img" aria-label="Six iridescent glass coins moving along a fixed path. Move the pointer over a coin or drag to spin it.">
+            <canvas id="coins" aria-hidden="true"></canvas>
+            <div class="coin-fallback" aria-hidden="true" hidden></div>
+          </div>
+
+          <section class="hero" aria-labelledby="hero-title">
+            <h1 id="hero-title">Money Talks. Learn<br />the Language</h1>
+            <p class="hero__eyebrow">Practical guidance for smarter money decisions and a more secure financial future.</p>
+            <p class="hero__description">Build practical money skills, make confident financial decisions, and<br />create a more secure future—one smart step at a time.</p>
+            <button class="explore" type="button">Explore</button>
+          </section>
+        </div>
+      </section>
+
+      <section id="story" class="story" aria-label="Confidence with everyday money">
+        <div class="story-pin">
+          <div class="stage story-stage">
+            <div class="story-content">
+              <p class="story-text">Money shapes the choices we make every day, but feeling confident with it is a skill you can learn. Understand where your money goes <span class="story-coin" data-story-coin="0" aria-hidden="true"></span> and build habits that give you room to breathe. A clear budget, a little set aside, and a goal worth saving for <span class="story-coin" data-story-coin="1" aria-hidden="true"></span> can turn everyday decisions into steady progress. Learn the basics, make a plan, and put your money to work for the life you want.</p>
+              <canvas id="story-coins" aria-hidden="true"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="budget" class="screen screen--budget" aria-labelledby="budget-title">
+        <div class="stage budget-stage">
+          <div class="budget-layout">
+            <div class="budget-income">
+              <header class="budget-header">
+                <h2 id="budget-title">Make every dollar count.</h2>
+              </header>
+              <p class="budget-income__amount" aria-label="Monthly income: 5,000 dollars">$5,000.00</p>
+              <p class="budget-label budget-income__caption">Your monthly take-home</p>
+
+              <dl class="budget-details">
+                <div><dt>Income type</dt><dd>After tax</dd></div>
+                <div><dt>Plan period</dt><dd>One month</dd></div>
+                <div><dt>Savings rate</dt><dd>20% of income</dd></div>
+                <div><dt>Saving toward</dt><dd>Emergency fund</dd></div>
+              </dl>
+            </div>
+
+            <div class="budget-coin" role="img" aria-label="The glass coin from the first screen, slowly rotating on its axis. Move the pointer over it or drag to turn it.">
+              <svg class="budget-orbit" viewBox="0 0 560 620" fill="none" aria-hidden="true">
+                <path d="M 64 14 H 284 C 526 144 526 476 284 606 H 64" />
+                <path d="M 496 14 H 276 C 34 144 34 476 276 606 H 496" />
+              </svg>
+              <canvas id="budget-coin" aria-hidden="true"></canvas>
+              <svg class="budget-coin-fallback" viewBox="0 0 200 200" aria-hidden="true" hidden>
+                <defs><linearGradient id="budget-glass" x2="1" y2="1"><stop stop-color="#fff"/><stop offset=".3" stop-color="#4d39ff"/><stop offset=".55" stop-color="#c4f7ff"/><stop offset=".8" stop-color="#d771ff"/><stop offset="1" stop-color="#fff"/></linearGradient></defs>
+                <path fill="url(#budget-glass)" fill-rule="evenodd" d="M100 4a96 96 0 1 0 0 192a96 96 0 1 0 0-192 M100 53C153 30 170 47 147 100C170 153 153 170 100 147C47 170 30 153 53 100C30 47 47 30 100 53Z"/>
+                <circle cx="100" cy="100" r="18" fill="url(#budget-glass)"/>
+              </svg>
+            </div>
+
+            <div class="budget-allocation">
+              <p class="budget-label budget-allocation__heading">Where your money goes</p>
+
+              <div class="budget-metric">
+                <div class="budget-metric__label"><h3>Spent this month</h3><span>70% OF INCOME</span></div>
+                <p class="budget-metric__amount">−$3,500.00</p>
+                <div class="budget-bar" style="--bar-fill: 70%" role="img" aria-label="Spending: 70 percent of monthly income"></div>
+              </div>
+
+              <div class="budget-metric">
+                <div class="budget-metric__label"><h3>Set aside for the future</h3><span>20% OF INCOME</span></div>
+                <p class="budget-metric__amount">+$1,000.00</p>
+                <div class="budget-bar" style="--bar-fill: 20%" role="img" aria-label="Savings: 20 percent of monthly income"></div>
+              </div>
+
+              <div class="budget-balance">
+                <div><h3 class="budget-label">Still yours</h3><p class="budget-balance__amount">$500.00</p></div>
+                <p class="budget-balance__description">Room to breathe.<br />What’s left after spending<br />and saving this month.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="newsletter" class="screen screen--newsletter" aria-labelledby="newsletter-title">
+        <div class="stage newsletter-stage">
+          <div class="newsletter-content">
+            <h2 id="newsletter-title">Money wisdom, in your inbox.</h2>
+            <div class="scratch-card" data-revealed="false" data-progress="0">
+              <form class="newsletter-form" aria-label="Subscribe to money tips" inert>
+                <label class="visually-hidden" for="newsletter-email">Your email address</label>
+                <input id="newsletter-email" name="email" type="email" autocomplete="email" placeholder="Your email address" required aria-describedby="newsletter-status" />
+                <button class="newsletter-submit" type="submit">Subscribe <span aria-hidden="true">↗</span></button>
+              </form>
+              <canvas id="scratch-layer" aria-hidden="true"></canvas>
+            </div>
+            <p class="newsletter-description">Practical ideas to help you budget better, save with purpose,<br />and feel more confident about money.</p>
+            <p id="newsletter-status" class="newsletter-status" role="status" aria-live="polite"></p>
+          </div>
+          <button class="scratch-coin" type="button" aria-label="Drag the coin across the protective layer, or press Enter to reveal the sign-up form">
+            <canvas id="scratch-coin" aria-hidden="true"></canvas>
+          </button>
+          <div class="scratch-dock" aria-hidden="true"></div>
+          <footer class="newsletter-footer">
+            <p>Small lessons. Better money habits.</p>
+            <p>© 2026 Money Talks.</p>
+          </footer>
+        </div>
+      </section>
+    </main>
+    <div class="travelling-coin" aria-hidden="true" hidden>
+      <canvas id="travelling-coin"></canvas>
+      <div class="travelling-coin-fallback"></div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

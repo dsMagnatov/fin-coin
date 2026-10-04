@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.verification/
+.pnpm-store/
+.env
+.env.*
+!.env.example
+/*.jpg
+/*.jpeg
+/*.png
+/*.mp4
+/*.mov
+/*.glb
+*.log

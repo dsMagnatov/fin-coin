@@ -28,6 +28,10 @@ pnpm version with the frozen lockfile, runs the production build, and publishes
 `dist/`. `package.json` selects Node.js 24.x. No environment variables or
 Corepack dashboard setting are required for this static site.
 
+`pnpm-workspace.yaml` explicitly allows the esbuild install script with
+pnpm 11's `allowBuilds` setting. Keep this file in the repository: Vite needs
+esbuild during a clean deployment install.
+
 The repository contains the site source, tests, build configuration, favicon,
 and locally served fonts with their licenses. Design references, unused 3D
 models, screen recordings, generated builds, and verification screenshots are
